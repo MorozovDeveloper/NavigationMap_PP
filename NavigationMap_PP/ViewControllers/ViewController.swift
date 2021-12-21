@@ -10,13 +10,13 @@ import MapKit
 import CoreLocation
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var conteinerView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var testLabel: UILabel!
     
     let locationManager = CLLocationManager()
-    let regionInMetres = 1_000.00
+    let regionInMetres = 1_500.00
     
     
     override func viewDidLoad() {
@@ -28,9 +28,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization() // запрос авторизации
         locationManager.startUpdatingLocation()
-        
-    }
 
+    }
+    
+    
     @IBAction func searchMenuButton(_ sender: Any) {
         conteinerView.isHidden = false
         
@@ -38,14 +39,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func myLocationButton(_ sender: Any) {
         userLocation(mapKit: mapView)
-
         
     }
     
     @IBAction func favouritesButton(_ sender: Any) {
+        
     }
     
-    
+    // Нахождение юзера
     func userLocation(mapKit: MKMapView) {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location,
@@ -53,7 +54,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                                             longitudinalMeters: regionInMetres)
             mapKit.setRegion(region, animated: true)
             mapKit.showsUserLocation = true
- 
+            
         }
     }
     
@@ -65,12 +66,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let center = getCenterLocation(for: mapView)
         let geocoder = CLGeocoder()
         
         geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
+            
             if let error = error {
                 print(error)
                 return
@@ -90,7 +91,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     self.testLabel.text = ""
                 }
             }
-            
         }
     }
     

@@ -30,13 +30,6 @@
                                     <action selector="myLocationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KTI-p7-Bjj"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Gd-3k-jny">
-                                <rect key="frame" x="16" y="72" width="358" height="154"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="GSL-vB-fLk" kind="embed" id="iME-4b-Wo0"/>
-                                </connections>
-                            </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNX-xg-fIw">
                                 <rect key="frame" x="326" y="457" width="44" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -60,7 +53,7 @@
                                     <action selector="searchMenuButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eo0-fS-Jtm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test LAbel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iam-9X-2DB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iam-9X-2DB">
                                 <rect key="frame" x="16" y="687" width="358" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96970273009999997" green="0.97600230139999999" blue="0.95529282130000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,6 +61,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Gd-3k-jny">
+                                <rect key="frame" x="16" y="44" width="358" height="154"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="GSL-vB-fLk" kind="embed" id="iME-4b-Wo0"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -166,6 +166,7 @@
                     </view>
                     <connections>
                         <outlet property="fromTextField" destination="FAM-UW-dcr" id="qQt-xD-84P"/>
+                        <outlet property="goButton" destination="esG-43-T4w" id="lsh-Wg-qmf"/>
                         <outlet property="whereTextField" destination="WPn-tH-6OT" id="e8s-uN-nie"/>
                     </connections>
                 </viewController>
