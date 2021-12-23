@@ -18,9 +18,9 @@ class ContainerViewController: UIViewController {
         super.viewDidLoad()
         view.layer.cornerRadius = 10
         
-        goButton.isEnabled = false
-        fromTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        whereTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+       // goButton.isEnabled = false
+            // fromTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+            //whereTextField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
     }
     
     @objc private func textFieldChanged() {
@@ -33,24 +33,22 @@ class ContainerViewController: UIViewController {
     }
     
     @IBAction func goButton(_ sender: Any) {
-        DispatchQueue.main.async { [self] in // для одновременного отображения 2х точек
-            setupPlacemark(textLocation: fromTextField.text!)
-        }
+        setupPlacemark(textLocation: fromTextField.text!)
+        
         DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1.5) { [self] in
             secondSetupPlacemark(textLocation: whereTextField.text!)
         }
-        
     }
     
-
+    
     func setupPlacemark(textLocation: String?) {
-        if let mapVC = parent as? ViewController {
+        if let mapVC = parent as? MapViewController {
             
             guard let location = textLocation else {return}
             
             let geocoder = CLGeocoder()
             
-            geocoder.geocodeAddressString(location) { (placemarks, error) in
+            geocoder.geocodeAddressString(location) { [self] (placemarks, error) in
                 if let error = error {
                     print(error)
                     return
@@ -61,7 +59,6 @@ class ContainerViewController: UIViewController {
                 
                 let annotation = MKPointAnnotation()
                 annotation.title = "От: \(textLocation!)"
-                
                 guard let plaseMarkLocation = placemark?.location else {return}
                 annotation.coordinate = plaseMarkLocation.coordinate
                 
@@ -70,13 +67,15 @@ class ContainerViewController: UIViewController {
                 
                 print("От")
                 
+                mapVC.mapThis(destinationCord: plaseMarkLocation.coordinate)
+                
             }
         }
     }
     
     
     func secondSetupPlacemark(textLocation: String?) {
-        if let mapVC = parent as? ViewController {
+        if let mapVC = parent as? MapViewController {
             
             guard let location = textLocation else {return}
             
@@ -93,7 +92,6 @@ class ContainerViewController: UIViewController {
                 
                 let annotation = MKPointAnnotation()
                 annotation.title = "До: \(textLocation!)"
-                
                 guard let plaseMarkLocation = placemark?.location else {return}
                 annotation.coordinate = plaseMarkLocation.coordinate
                 
