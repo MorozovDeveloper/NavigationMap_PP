@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C6C28A3276B8AF800805CEA /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C28A2276B8AF800805CEA /* ContainerViewController.swift */; };
 		7C6C28A5276B8B2300805CEA /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6C28A4276B8B2300805CEA /* FavouritesViewController.swift */; };
 		7C6FE2EC276F20E100C4B456 /* PlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6FE2EB276F20E100C4B456 /* PlaceModel.swift */; };
 		7CC15AC1276B3FE6005AF0C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC15AC0276B3FE6005AF0C3 /* AppDelegate.swift */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7C6C28A2276B8AF800805CEA /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		7C6C28A4276B8B2300805CEA /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 		7C6FE2EB276F20E100C4B456 /* PlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceModel.swift; sourceTree = "<group>"; };
 		7CC15ABD276B3FE6005AF0C3 /* NavigationMap_PP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavigationMap_PP.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,10 +47,17 @@
 			isa = PBXGroup;
 			children = (
 				7CC15AC4276B3FE6005AF0C3 /* MapViewController.swift */,
-				7C6C28A2276B8AF800805CEA /* ContainerViewController.swift */,
 				7C6C28A4276B8B2300805CEA /* FavouritesViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		7C99EECE27773E35004BE7BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7C6FE2EB276F20E100C4B456 /* PlaceModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7CC15AB4276B3FE6005AF0C3 = {
@@ -76,7 +81,7 @@
 			children = (
 				7CC15AC0276B3FE6005AF0C3 /* AppDelegate.swift */,
 				7CC15AC2276B3FE6005AF0C3 /* SceneDelegate.swift */,
-				7C6FE2EB276F20E100C4B456 /* PlaceModel.swift */,
+				7C99EECE27773E35004BE7BE /* Model */,
 				7C880300276CC90A0097AD97 /* ViewControllers */,
 				7CC15AC6276B3FE6005AF0C3 /* Main.storyboard */,
 				7CC15ACC276B3FE7005AF0C3 /* Assets.xcassets */,
@@ -161,7 +166,6 @@
 				7C6C28A5276B8B2300805CEA /* FavouritesViewController.swift in Sources */,
 				7CC15AC5276B3FE6005AF0C3 /* MapViewController.swift in Sources */,
 				7CC15AC1276B3FE6005AF0C3 /* AppDelegate.swift in Sources */,
-				7C6C28A3276B8AF800805CEA /* ContainerViewController.swift in Sources */,
 				7CC15ACB276B3FE6005AF0C3 /* NavigationMap_PP.xcdatamodeld in Sources */,
 				7CC15AC3276B3FE6005AF0C3 /* SceneDelegate.swift in Sources */,
 				7C6FE2EC276F20E100C4B456 /* PlaceModel.swift in Sources */,
