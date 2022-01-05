@@ -13,6 +13,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var conteinerView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionTextField: UITextField!
+    @IBOutlet weak var stackView: UIStackView!
     
     var delegateFavouritesVC = FavouritesViewController()
     var modelMap = ModelMap()
@@ -20,7 +21,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-
+        
+        stackView.layer.cornerRadius = 15
         directionTextField.layer.shadowOpacity = 0.7
         directionTextField.layer.shadowRadius = 5
         
