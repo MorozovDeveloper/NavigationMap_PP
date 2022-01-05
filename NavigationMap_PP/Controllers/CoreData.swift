@@ -5,10 +5,8 @@
 //  Created by Oleg on 05.01.2022.
 //
 
-import Foundation
 import UIKit
 import CoreData
-
 
 extension FavouritesViewController {
     
@@ -30,6 +28,24 @@ extension FavouritesViewController {
         }
     }
     
+    func deleteTask() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Tasks> = Tasks.fetchRequest()
+        if let tasks = try? context.fetch(fetchRequest){
+            for task in tasks {
+                context.delete(task)
+            }
+        }
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        self.tableView.reloadData()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -44,5 +60,5 @@ extension FavouritesViewController {
         }
         tableView.reloadData()
     }
-      
+    
 }

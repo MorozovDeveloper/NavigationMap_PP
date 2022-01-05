@@ -1,78 +1,20 @@
 //
-//  ViewController.swift
+//  MapManager.swift
 //  NavigationMap_PP
 //
-//  Created by Oleg on 16.12.2021.
+//  Created by Oleg on 05.01.2022.
 //
 
 import UIKit
 import MapKit
 
-
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate{
+extension MapViewController {
     
-    @IBOutlet weak var conteinerView: UIView!
-    @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var directionTextField: UITextField!
-    
-    @IBOutlet weak var testTF: UITextField!
-    
-    let locationManager = CLLocationManager()
-    var directionsArray: [MKDirections] = []
-    var placeCoordinate: CLLocationCoordinate2D?
-    
-    let regionInMetres = 1_500.00
-    
-    var delegate = FavouritesViewController()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        mapView.delegate = self
-        
-        directionTextField.layer.shadowOpacity = 0.7
-        directionTextField.layer.shadowRadius = 5
-        
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest // точность отображения
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization() // запрос авторизации
-        locationManager.startUpdatingLocation()
-    }
-    
-    
-    @IBAction func favouritesButton(_ sender: Any) {
-        delegate.saveTask(withTitle: directionTextField.text!)
-    }
-    
-    
-    
-    
-    @IBAction func goButton(_ sender: Any) {
-        setupPlacemark(textLocation: directionTextField.text!)
-    }
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Save" {
-            guard let saveFavourites = segue.destination as? FavouritesViewController else {return}
-            saveFavourites.saveRoutes = directionTextField.text
-        }
-    }
-    
-    @IBAction func unwind(for unwindSegue: UIStoryboardSegue) {
-        let favouritesVC = unwindSegue.source as! FavouritesViewController
-        if let indexPath = favouritesVC.tableView.indexPathForSelectedRow {
-            directionTextField.text = favouritesVC.tasks[indexPath.row].title
-        }
-        
-    }
-    
-    
+    // Поиск и создание метки
     func setupPlacemark(textLocation: String?) {
         guard let location = textLocation else {return}
-        
-        let geocoder = CLGeocoder()
-        
-        geocoder.geocodeAddressString(location) { [self] (placemarks, error) in
+
+        modelMap.geocoder.geocodeAddressString(location) { [self] (placemarks, error) in
             if let error = error {
                 print(error)
                 return
@@ -93,24 +35,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    @IBAction func myLocationButton(_ sender: Any) {
-        userLocation(mapKit: mapView)
-    }
-    
     // Нахождение юзера
     func userLocation(mapKit: MKMapView) {
-        if let location = locationManager.location?.coordinate {
+        if let location = modelMap.locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: regionInMetres,
-                                            longitudinalMeters: regionInMetres)
+                                            latitudinalMeters: modelMap.regionInMetres,
+                                            longitudinalMeters: modelMap.regionInMetres)
             mapKit.setRegion(region, animated: true)
             mapKit.showsUserLocation = true
         }
     }
     
-    
+    // Построение маршрута
     func mapThis(destinationCord: CLLocationCoordinate2D) {
-        let sourceCordinate = (locationManager.location?.coordinate)!
+        let sourceCordinate = (modelMap.locationManager.location?.coordinate)!
         
         let sourcePlaceMark = MKPlacemark(coordinate: sourceCordinate)
         let destPlaceMark = MKPlacemark(coordinate: destinationCord)
@@ -133,7 +71,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 return
             }
             
-            self.resetMapView(withNew: directions, mapKit: self.mapView) // удаляем старый маршрут при построении нового
+            self.resetMapView(withNew: directions, mapKit: self.mapView)
             
             let route = response.routes[0]
             self.mapView.addOverlay(route.polyline)
@@ -141,39 +79,36 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
     }
     
-    // удаляем старый маршрут при построении нового
+    // Удаление старого маршрута при построении нового
     func resetMapView(withNew directions: MKDirections, mapKit: MKMapView) {
         mapKit.removeOverlays(mapKit.overlays)
-        directionsArray.append(directions)
-        let _ = directionsArray.map { $0.cancel() }
-        directionsArray.removeAll()
+        modelMap.directionsArray.append(directions)
+        let _ = modelMap.directionsArray.map { $0.cancel() }
+        modelMap.directionsArray.removeAll()
     }
     
     // Линия
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let render = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        render.strokeColor = .blue
-        render.lineWidth = 2
+        render.strokeColor = .systemBlue
+        render.lineWidth = 3
         return render
     }
     
-    
-    
+    // Определение адреса в реальном времени
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let center = CLLocation(latitude: mapView.centerCoordinate.latitude , longitude: mapView.centerCoordinate.longitude) //центр карты
-        let geocoder = CLGeocoder()
         
-        geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
+        modelMap.geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
             if let error = error {
                 print(error)
                 return
             }
+            
             guard let placemarks = placemarks else {return}
-            
             let placemark = placemarks.first
-            let streetName = placemark?.thoroughfare // определяем название улицы
-            let buildNumber = placemark?.subThoroughfare // определяем номер дома
-            
+            let streetName = placemark?.thoroughfare // название улицы
+            let buildNumber = placemark?.subThoroughfare // номер дома
             
             DispatchQueue.main.async {
                 if streetName != nil && buildNumber != nil {
@@ -189,4 +124,3 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
 }
-

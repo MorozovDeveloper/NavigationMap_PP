@@ -27,7 +27,7 @@
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="favouritesButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZEe-ab-c7b"/>
+                                    <action selector="favouritesButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="bvr-yB-knX"/>
                                     <segue destination="2Xr-YV-Gih" kind="presentation" identifier="Save" modalPresentationStyle="fullScreen" id="NQQ-tv-eTH"/>
                                 </connections>
                             </button>
@@ -56,7 +56,7 @@
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="goButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B4C-Qm-djy"/>
+                                    <action selector="goButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="d3U-bv-Gvh"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pin" translatesAutoresizingMaskIntoConstraints="NO" id="vYw-uV-1Ue">
@@ -70,7 +70,7 @@
                                     <color key="baseForegroundColor" systemColor="labelColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="myLocationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KTI-p7-Bjj"/>
+                                    <action selector="myLocationButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="pUQ-13-3vn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -151,7 +151,7 @@
                                     <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="deleteButton:" destination="2Xr-YV-Gih" eventType="touchUpInside" id="U0K-qp-ZsD"/>
+                                    <action selector="deleteButton" destination="2Xr-YV-Gih" eventType="touchUpInside" id="K4Y-bb-rCD"/>
                                 </connections>
                             </button>
                         </subviews>
