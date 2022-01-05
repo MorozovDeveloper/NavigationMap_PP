@@ -45,7 +45,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         userLocation(mapKit: mapView)
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Save" {
             guard let saveFavourites = segue.destination as? FavouritesViewController else {return}

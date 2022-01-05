@@ -15,17 +15,15 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     var saveRoutes: String!
     var tasks: [Tasks] = []
      
-    @IBAction func deleteButton() {
-        deleteTask()
-    }
-    
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
-
+        if tasks != nil {
+            return tasks.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -36,4 +34,20 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
         return cell
 
   }
+    // Удаление строки
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            context.delete(tasks[indexPath.row])
+            
+            do {
+                try context.save()
+                self.tableView.reloadData()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
