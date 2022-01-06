@@ -60,7 +60,6 @@ extension MapViewController {
         destinationRequest.source = sourceItem
         destinationRequest.destination = destItem
         destinationRequest.transportType = .automobile
-        destinationRequest.requestsAlternateRoutes = true
         
         let directions = MKDirections(request: destinationRequest)
         directions.calculate { (response, error) in
