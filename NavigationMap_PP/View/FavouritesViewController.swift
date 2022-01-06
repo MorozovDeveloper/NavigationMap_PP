@@ -14,7 +14,12 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var saveRoutes: String!
     var tasks: [Tasks] = []
-     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        fetchRequest()
+    }
+    
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

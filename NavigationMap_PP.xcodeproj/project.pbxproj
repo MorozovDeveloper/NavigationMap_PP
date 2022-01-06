@@ -52,6 +52,7 @@
 			children = (
 				7CC15AC4276B3FE6005AF0C3 /* MapViewController.swift */,
 				7C6C28A4276B8B2300805CEA /* FavouritesViewController.swift */,
+				7CC15AC6276B3FE6005AF0C3 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -97,7 +98,6 @@
 				7C99EECE27773E35004BE7BE /* Model */,
 				7C352F7B2785CFC100FD33E0 /* View */,
 				7C880300276CC90A0097AD97 /* View Controllers */,
-				7CC15AC6276B3FE6005AF0C3 /* Main.storyboard */,
 				7CC15ACC276B3FE7005AF0C3 /* Assets.xcassets */,
 				7CC15ACE276B3FE7005AF0C3 /* LaunchScreen.storyboard */,
 				7CC15AD1276B3FE7005AF0C3 /* Info.plist */,

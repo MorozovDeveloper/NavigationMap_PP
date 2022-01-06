@@ -27,9 +27,8 @@ extension FavouritesViewController {
             print(error.localizedDescription)
         }
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    
+    func fetchRequest() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         

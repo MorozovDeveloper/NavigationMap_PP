@@ -13,7 +13,7 @@ extension MapViewController {
     // Поиск и создание метки
     func setupPlacemark(textLocation: String?) {
         guard let location = textLocation else {return}
-
+        
         modelMap.geocoder.geocodeAddressString(location) { [self] (placemarks, error) in
             if let error = error {
                 print(error)
@@ -65,13 +65,13 @@ extension MapViewController {
         let directions = MKDirections(request: destinationRequest)
         directions.calculate { (response, error) in
             guard let response = response else {
-                if let error = error {
+                if error != nil {
                     print("Something is wrong")
                 }
                 return
             }
             
-            self.resetMapView(withNew: directions, mapKit: self.mapView)
+            self.resetMapView(withNew: directions, mapKit: self.mapView)// удаление старого маршрута
             
             let route = response.routes[0]
             self.mapView.addOverlay(route.polyline)
@@ -124,3 +124,4 @@ extension MapViewController {
     }
     
 }
+
