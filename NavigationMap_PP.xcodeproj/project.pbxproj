@@ -57,13 +57,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		7C880300276CC90A0097AD97 /* View Model */ = {
+		7C880300276CC90A0097AD97 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				7C352F772785C83B00FD33E0 /* MapManager.swift */,
 				7C352F752785C16C00FD33E0 /* CoreData.swift */,
 			);
-			path = "View Model";
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		7C99EECE27773E35004BE7BE /* Model */ = {
@@ -97,7 +97,7 @@
 				7CC15AC2276B3FE6005AF0C3 /* SceneDelegate.swift */,
 				7C99EECE27773E35004BE7BE /* Model */,
 				7C352F7B2785CFC100FD33E0 /* View */,
-				7C880300276CC90A0097AD97 /* View Model */,
+				7C880300276CC90A0097AD97 /* Controller */,
 				7CC15ACC276B3FE7005AF0C3 /* Assets.xcassets */,
 				7CC15ACE276B3FE7005AF0C3 /* LaunchScreen.storyboard */,
 				7CC15AD1276B3FE7005AF0C3 /* Info.plist */,
