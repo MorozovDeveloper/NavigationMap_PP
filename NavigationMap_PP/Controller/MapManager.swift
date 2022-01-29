@@ -14,7 +14,7 @@ extension MapViewController {
     func setupPlacemark(textLocation: String?) {
         guard let location = textLocation else {return}
         
-        modelMap.geocoder.geocodeAddressString(location) { [self] (placemarks, error) in
+        ModelMap.share.geocoder.geocodeAddressString(location) { [self] (placemarks, error) in
             if let error = error {
                 print(error)
                 return
@@ -37,10 +37,10 @@ extension MapViewController {
     
     // Нахождение юзера
     func userLocation(mapKit: MKMapView) {
-        if let location = modelMap.locationManager.location?.coordinate {
+        if let location = ModelMap.share.locationManager.location?.coordinate {
             let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: modelMap.regionInMetres,
-                                            longitudinalMeters: modelMap.regionInMetres)
+                                            latitudinalMeters: ModelMap.share.regionInMetres,
+                                            longitudinalMeters: ModelMap.share.regionInMetres)
             mapKit.setRegion(region, animated: true)
             mapKit.showsUserLocation = true
         }
@@ -48,7 +48,7 @@ extension MapViewController {
     
     // Построение маршрута
     func mapThis(destinationCord: CLLocationCoordinate2D) {
-        let sourceCordinate = (modelMap.locationManager.location?.coordinate)!
+        let sourceCordinate = (ModelMap.share.locationManager.location?.coordinate)!
         
         let sourcePlaceMark = MKPlacemark(coordinate: sourceCordinate)
         let destPlaceMark = MKPlacemark(coordinate: destinationCord)
@@ -81,9 +81,9 @@ extension MapViewController {
     // Удаление старого маршрута при построении нового
     func resetMapView(withNew directions: MKDirections, mapKit: MKMapView) {
         mapKit.removeOverlays(mapKit.overlays)
-        modelMap.directionsArray.append(directions)
-        let _ = modelMap.directionsArray.map { $0.cancel() }
-        modelMap.directionsArray.removeAll()
+        ModelMap.share.directionsArray.append(directions)
+        let _ = ModelMap.share.directionsArray.map { $0.cancel() }
+        ModelMap.share.directionsArray.removeAll()
     }
     
     // Линия
@@ -98,7 +98,7 @@ extension MapViewController {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let center = CLLocation(latitude: mapView.centerCoordinate.latitude , longitude: mapView.centerCoordinate.longitude) //центр карты
         
-        modelMap.geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
+        ModelMap.share.geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
             if let error = error {
                 print(error)
                 return

@@ -12,9 +12,7 @@ class FavouritesViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    var saveRoutes: String!
     var tasks: [Tasks] = []
-    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)

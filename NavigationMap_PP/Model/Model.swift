@@ -8,7 +8,9 @@
 import UIKit
 import MapKit
 
-struct ModelMap {
+class ModelMap {
+    static var share = ModelMap()
+    public init() {}
     
     let locationManager = CLLocationManager()
     let geocoder = CLGeocoder()
@@ -16,4 +18,5 @@ struct ModelMap {
     var placeCoordinate: CLLocationCoordinate2D?
     
     let regionInMetres = 1_500.00
+    var saveRoutes: String!
 }
